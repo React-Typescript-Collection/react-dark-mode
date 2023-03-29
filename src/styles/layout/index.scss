@@ -1,0 +1,18 @@
+@import "./../abstracts/functions.scss";
+@import "./../abstracts/mixins.scss";
+
+/*Layout wrapper styles*/
+
+.layout-wrapper {
+  @include themify($themes) {
+    background: themed('bodyBackgroundColor');
+  }
+}
+
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 78px);
+}
+
+

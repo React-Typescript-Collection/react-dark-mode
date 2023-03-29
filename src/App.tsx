@@ -1,25 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FC, useState } from 'react';
+import { ThemeContext } from './contexts/theme-context';
+import Layout from './layout';
+import moon from './images/moon.png';
+import sun from './images/sun.png';
+
+import './styles/main.scss';
 
 function App() {
+  const isBrowserDefaultDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const getDefaultTheme = (): string => {
+    const localStorageTheme = localStorage.getItem('default-theme');
+    const browserDefault = isBrowserDefaultDark() ? 'dark' : 'light';
+    return localStorageTheme || browserDefault;
+  };
+  const [theme, setTheme] = useState(getDefaultTheme());
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      <div className={`theme-${theme}`}>
+        <Layout>
+          Hi
+        </Layout>
+      </div>
+    </ThemeContext.Provider>
   );
 }
 
