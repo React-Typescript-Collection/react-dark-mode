@@ -1,10 +1,8 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import { ThemeContext } from './contexts/theme-context';
 import Layout from './layout';
-import moon from './images/moon.png';
-import sun from './images/sun.png';
 
-import './styles/main.scss';
+import './App.scss';
 
 function App() {
   const isBrowserDefaultDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
